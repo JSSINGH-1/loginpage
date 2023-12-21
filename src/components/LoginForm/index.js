@@ -13,11 +13,21 @@ class Login extends Component {
     this.setState({Password: event.target.value})
   }
 
-  onSubmitForm = event => {
+  onSubmitForm = async event => {
     event.preventDefault()
     const {userName, Password} = this.state
-    console.log(userName)
-    console.log(Password)
+    const userDetails = {userName, Password}
+
+    const url = 'https://apis.ccbp.in/login'
+
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(userDetails),
+    }
+
+    const response = await fetch(url, options)
+    const data = await response.json()
+    console.log(data)
   }
 
   render() {
@@ -47,19 +57,19 @@ class Login extends Component {
               className="inputs"
               id="UserId"
               placeholder="Username"
-              type="password"
+              type="text"
               onChange={this.onUsernameInput}
             />
           </div>
           <div className="formInput">
-            <label className="labelEl" htmlFor="UserId">
+            <label className="labelEl" htmlFor="UserPasswords">
               PASSWORD
             </label>
             <input
               className="inputs"
               placeholder="Passwords"
-              id="UserId"
-              type="text"
+              id="UserPasswords"
+              type="password"
               onChange={this.onUsernamePassword}
             />
           </div>
