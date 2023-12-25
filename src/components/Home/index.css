@@ -1,1 +1,80 @@
-/* Write your CSS code here */
+.imageContainer {
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+  background-color: #e6f6ff;
+}
+
+@media (min-width: 768px) {
+  .imageContainer {
+    display: none;
+  }
+}
+
+.imageLogo {
+  width: 70px;
+}
+.clothes {
+  width: 300px;
+}
+
+@media (min-width: 768px) {
+  .clothes {
+    display: none;
+  }
+}
+
+.clothes1 {
+  width: 400px;
+}
+
+@media (max-width: 769px) {
+  .clothes1 {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .ShopContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid black;
+  }
+}
+
+@media (min-width: 769px) {
+  .ShopContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    /* border: 1px solid black; */
+    padding: 9px;
+    margin: none;
+    width: 65%;
+  }
+}
+
+.cardDetailsContainer {
+  display: flex;
+  /* border: 1px solid black; */
+  width: 90%;
+  margin: auto;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+.shopNow {
+  background-color: #0b69ff;
+  padding: 7px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
