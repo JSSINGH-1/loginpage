@@ -1,1 +1,53 @@
-/* Write your CSS code here */
+.HeaderContainer {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  width: 200px;
+  height: 45px;
+}
+
+.itemContainer {
+  display: flex;
+  /* border: 1px solid red; */
+  align-items: center;
+  justify-content: space-around;
+  width: 300px;
+  list-style-type: none;
+}
+@media (max-width: 768px) {
+  .itemContainer {
+    display: none;
+  }
+}
+
+.para {
+  font-family: Roboto;
+  color: #64748b;
+}
+
+.buttonEl {
+  background-color: #0b69ff;
+  color: white;
+  padding: 7px;
+  border: none;
+  border-radius: 3px;
+}
+
+.navlogout {
+  border: none;
+  height: 40px;
+  background: none;
+}
+
+.imageLogo {
+  width: 35px;
+}
+
+@media (min-width: 768px) {
+  .navlogout {
+    display: none;
+  }
+}
