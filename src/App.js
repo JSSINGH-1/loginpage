@@ -1,13 +1,18 @@
-// import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
-import Login from './components/LoginForm'
-
+import LoginForm from './components/LoginForm'
+import Home from './components/Home'
+import NotFound from './components/NotFound'
 import './App.css'
 
 const App = () => (
-  <div>
-    <Login />
-  </div>
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/login" component={LoginForm} />
+      <Route exact path="/" component={Home} />
+      <Route path="/" component={NotFound} />
+    </Switch>
+  </BrowserRouter>
 )
 
 export default App
