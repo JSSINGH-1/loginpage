@@ -2,35 +2,56 @@ import {Component} from 'react'
 
 import './index.css'
 
-class Login extends Component {
-  state = {userName: '', Password: ''}
+class LoginForm extends Component {
+  state = {usernameInput: '', userPasswordInputs: '', errorMessage: ''}
+
+  onSubmitSuccess = () => {
+    const {history} = this.props
+    history.replace('/')
+  }
 
   onUsernameInput = event => {
-    this.setState({userName: event.target.value})
+    this.setState({usernameInput: event.target.value})
   }
 
   onUsernamePassword = event => {
-    this.setState({Password: event.target.value})
+    this.setState({userPasswordInputs: event.target.value})
   }
 
   onSubmitForm = async event => {
     event.preventDefault()
-    const {userName, Password} = this.state
-    const userDetails = {userName, Password}
 
-    const url = 'https://apis.ccbp.in/login'
-
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
+    const {usernameInput, userPasswordInputs} = this.state
+    const userDetails = {
+      username: usernameInput,
+      password: userPasswordInputs,
     }
+    if (userPasswordInputs === '') {
+      this.setState({errorMessage: 'Please enter the password'})
+    }
+    if (usernameInput === '') {
+      this.setState({errorMessage: 'Please enter valid the Details'})
+    } else {
+      const url = 'https://apis.ccbp.in/login'
 
-    const response = await fetch(url, options)
-    const data = await response.json()
-    console.log(data)
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(userDetails),
+      }
+
+      const response = await fetch(url, options)
+      const data = await response.json()
+      console.log(data)
+      if (response.ok === true) {
+        this.onSubmitSuccess()
+      } else {
+        this.setState({errorMessage: 'Please enter correct the Details'})
+      }
+    }
   }
 
   render() {
+    const {errorMessage} = this.state
     return (
       <div className="mainContainer">
         <img
@@ -39,9 +60,9 @@ class Login extends Component {
           alt="website logo"
         />
         <img
-          className="imageLogo"
           src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-login-img.png"
           alt="website login"
+          className="loginLogoImage"
         />
         <form className="cardOne" onSubmit={this.onSubmitForm}>
           <img
@@ -72,6 +93,7 @@ class Login extends Component {
               type="password"
               onChange={this.onUsernamePassword}
             />
+            <p className="error">{errorMessage}</p>
           </div>
           <button className="button" type="submit">
             Login
@@ -82,4 +104,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default LoginForm
